@@ -2,7 +2,7 @@
 import { chromium } from "playwright";
 import { test } from "./tests/example.js";
 
-(async () => {
+export const handler = async () => {
   // Setup
   const browser = await chromium.launch();
   const context = await browser.newContext();
@@ -13,4 +13,4 @@ import { test } from "./tests/example.js";
   // Teardown
   await context.close();
   await browser.close();
-})();
+}
