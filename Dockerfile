@@ -13,6 +13,8 @@ RUN apt-get update && apt-get install -y \
 # Copy the application code to the container
 COPY . .
 
+ENV NPM_CONFIG_CACHE=/tmp/.npm
+
 # Install the application dependencies
 RUN npm install
 
