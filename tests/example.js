@@ -9,5 +9,5 @@ import { expect } from '@playwright/test';
 export async function test(page, context) {
   await page.goto('https://playwright.dev/');
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/bla/);
+  await expect(page).toHaveTitle(/Playwright/);
 }
