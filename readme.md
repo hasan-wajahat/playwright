@@ -51,3 +51,27 @@ Then push the image
 ```bash
 docker push aws_account_id.dkr.ecr.us-west-2.amazonaws.com/my-repository
 ```
+
+## Local testing
+
+We can run dockerized lamdba locally as well.
+
+- First comment out the entry point and cmd line in dockerfile
+- Uncomment the local testing part at then end of the dockerfile
+- Then build again
+
+```bash
+ docker buildx build --platform linux/amd64 -t playwright .
+ ```
+
+ - Then run the docker image
+
+ ```bash
+  docker run --platform linux/amd64 -p 9000:8080 playwright
+  ```
+
+  - Now you can call the lambda using curl
+
+  ```bash
+  curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
+  ```
