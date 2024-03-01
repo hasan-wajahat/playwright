@@ -25,3 +25,29 @@ If you are using standard platform, you can use the following command:
 ```bash
 docker build -t playwright .
 ```
+
+## Pushing to ECR
+
+To install the lambda you need to first upload to ECR.
+
+First login to AWS CLI then authenticate Docker to ECR
+
+```bash
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+```
+
+Replace `region` with your AWS region, `aws_account_id` with your AWS account id and `region` with your AWS region. This information can be found in AWS ECR.
+
+Then tag the image
+
+```bash
+docker tag playwright aws_account_id.dkr.ecr.us-west-2.amazonaws.com/my-repository
+```
+
+Again replace `aws_account_id` with your AWS account id and `region` with your AWS region. This information can be found in AWS ECR.
+
+Then push the image
+
+```bash
+docker push aws_account_id.dkr.ecr.us-west-2.amazonaws.com/my-repository
+```
