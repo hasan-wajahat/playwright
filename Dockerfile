@@ -27,3 +27,10 @@ ENTRYPOINT ["/bin/npx", "aws-lambda-ric"]
 
 # Set the command to run your application
 CMD ["index.handler"]
+
+
+# Local testing
+# COPY ./entry_script.sh /entry_script.sh
+# RUN chmod +x /entry_script.sh
+# ADD aws-lambda-rie /usr/bin/aws-lambda-rie
+# ENTRYPOINT [ "/entry_script.sh","index.handler" ]
