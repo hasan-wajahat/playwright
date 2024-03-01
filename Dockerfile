@@ -10,15 +10,18 @@ RUN apt-get update && apt-get install -y \
     autoconf \
     libtool
 
-# Copy the application code to the container
-COPY . .
 
 ENV NPM_CONFIG_CACHE=/tmp/.npm
+
+COPY package*.json ./
 
 # Install the application dependencies
 RUN npm install
 
 RUN npm install aws-lambda-ric
+
+# Copy the application code to the container
+COPY . .
 
 ENTRYPOINT ["/bin/npx", "aws-lambda-ric"]
 
