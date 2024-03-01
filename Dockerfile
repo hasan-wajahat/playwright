@@ -1,5 +1,5 @@
 # Use the Playwright base image
-FROM mcr.microsoft.com/playwright:latest-amd64
+FROM mcr.microsoft.com/playwright:v1.40.1-focal-amd64
 
 RUN apt-get update && apt-get install -y \
     g++ \
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 ENV NPM_CONFIG_CACHE=/tmp/.npm
 
-COPY package*.json ./
+COPY package.json ./
 
 # Install the application dependencies
 RUN npm install

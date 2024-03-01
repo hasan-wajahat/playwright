@@ -49,8 +49,6 @@ export const handler = async () => {
   const context = await browser.newContext();
   const page = await context.newPage();
 
-  console.log('browser started')
-
   await test(page, context);
 
   // Teardown
