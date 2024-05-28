@@ -7,13 +7,9 @@ settings:
 importers:
 
   .:
-    dependencies:
-      test@~1.44:
-        specifier: link:playwright/test@~1.44
-        version: link:playwright/test@~1.44
     devDependencies:
       '@playwright/test':
-        specifier: ~1.44.1
+        specifier: ~1.44.0
         version: 1.44.1
       '@types/node':
         specifier: ^20.9.1
