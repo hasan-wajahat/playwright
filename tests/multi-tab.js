@@ -12,6 +12,7 @@ export async function testPage(page) {
 
   const browserContext = page.context();
   await page.getByRole('link', { name: 'W3Schools Certificates' }).click();
+  // Wait for the new page to open
   const newPage = await browserContext.waitForEvent('page');
 
   await newPage.waitForLoadState('domcontentloaded');
