@@ -15,7 +15,6 @@ export async function testPage(page) {
 
 
     // Go to the Synthetics page
-    await page.locator('a[href="/ui/synthetics/monitors"]').click();
     await page.getByRole('link').filter({ hasText: 'Synthetics' }).click();
     // Wait for the locations map to show up, then take a screenshot
     await page.locator('[id="locationsMap"]').waitFor();
