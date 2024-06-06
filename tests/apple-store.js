@@ -9,12 +9,7 @@
 export async function testPage(page, context) {
   // App Store URL, in this example WhatsApp is used.
   const baseUrl = "https://apps.apple.com/us/app/whatsapp-messenger/id310633997";
-
-  // Handle alert dialogues
-  page.on('dialog', async dialog => {
-    await dialog.dismiss();
-  });
-
+  
   // Goto the URL
   await page.goto(baseUrl);
 
