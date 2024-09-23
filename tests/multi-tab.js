@@ -4,17 +4,20 @@
  * @param {import("@playwright/test").Page} page 
  */
 export async function testPage(page) {
-  // Set the screen resolution, as things render differently on different screen widths
-  await page.setViewportSize({ width: 1280, height: 720 });
-
+  // Navigate to w3schools.com and take a screenshot
   await page.goto('https://www.w3schools.com/', { waitUntil: 'domcontentloaded' });
   await page.screenshot({ path: 'firstTab.png' });
 
+  // Get browser context to listen for new page
   const browserContext = page.context();
-  await page.getByRole('link', { name: 'W3Schools Certificates' }).click();
-  // Wait for the new page to open
-  const newPage = await browserContext.waitForEvent('page');
 
+  // Get new tab that is opened after link is clicked
+  const [newPage] = await Promise.all([
+    browserContext.waitForEvent('page'),
+    page.getByRole('link', { name: 'W3Schools Certificates' }).click()
+  ]);
+
+  // Wait for the new page to load and take a screenshot
   await newPage.waitForLoadState('domcontentloaded');
   await newPage.screenshot({ path: 'secondTab.png' });
 

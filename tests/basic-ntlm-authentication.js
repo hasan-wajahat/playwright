@@ -6,9 +6,14 @@
  * @param {import("@playwright/test").Page} page 
  */
 export async function testPage(page) {
-
-  // Default authentication in playwright is done using browser since that is
-  // not available in this context we use url approach to authenticate
+  const browser = page.context().browser();
+  const context = await browser.newContext({
+    httpCredentials: {
+      username: 'user',
+      password: 'pass'
+    }
+  });
+  page = await context.newPage();
   await page.goto('https://user:pass@authenticationtest.com/HTTPAuth/');
 
   // take a screenshot
